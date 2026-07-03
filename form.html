@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Form</title>
+    <style>
+        *{
+            cursor: pointer;
+        }
+
+        h1{
+            font-size: 50px;
+            text-align: center;
+        }
+
+        form{
+            width: 50%;
+            height: 500px;
+            color: white;
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+            margin: 0 auto;
+            border-radius: 20px;
+        }
+
+        input{
+            width: 80%;
+            height: 50px;
+            color: green;
+            background-color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        button{
+            width: 60%;
+            height: 50px;
+            border-radius: 20px;
+        }
+
+        button:hover{
+            background-color: rgb(20, 245, 20) ;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enrollment Form</h1>
+    <form action="index.html" method="POST">
+                <label for="fullname" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Your FullName" required>
+            <br>
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
+            <br>
+                <label for="CNIC" class="form-label">CNIC</label>
+                <input type="text" class="form-control" id="CNIC" name="CNIC" placeholder="Enter CNIC" required>
+        <br>
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                <button type="submit" class="btn btn-success">Submit Application</button>
+    </form>
+<br><br><br><br>
+
+    <!-- <form action="/news" method="post">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" id="title" placeholder="Enter News Title" required>
+        <br>
+        <label for="content">Content</label><br>
+        <textarea name="content" id="content" placeholder="Add Content" required></textarea>
+        <br>
+        <button type="submit">Submit News</button>
+    </form>
+    <table border="1px"> -->
+        <!-- <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in enroll %}
+            <tr>
+                <td>{{ e.student_name }}</td>
+                <td>{{ e.student_email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+</body>
+</html>

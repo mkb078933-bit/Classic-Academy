@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classic Academy — Empowering Your Success with Quality Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark: #163a26;
+    --dark-2: #0f2c1c;
+    --lime: #c6f135;
+    --lime-2: #d7fa4d;
+    --bg: #f4f5ef;
+    --text: #16301f;
+    --muted: #6c7a72;
+    --white: #ffffff;
+    --radius: 14px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  
+  .imgone{
+    background-color: white;
+  }
+
+  h1,h2,h3,h4{ font-family:'Poppins', sans-serif; font-weight:700; line-height:1.15; }
+  img{ max-width:100%; display:block; }
+  a{ text-decoration:none; color:inherit; }
+  ul{ list-style:none; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 24px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-weight:600; font-size:14px; letter-spacing:.3px;
+    margin-bottom:14px;
+  }
+  .eyebrow .dot{
+    width:22px; height:12px; border-radius:8px; background:var(--lime);
+    position:relative; flex-shrink:0;
+  }
+  .eyebrow .dot::after{
+    content:""; position:absolute; right:-9px; top:2px;
+    width:8px; height:8px; background:var(--lime); clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:30px; font-weight:600; font-size:15px;
+    border:none; cursor:pointer; transition:.25s ease;
+    font-family:'Inter', sans-serif;
+  }
+  .btn-primary{ background:var(--dark); color:var(--white); }
+  .btn-primary:hover{ background:var(--dark-2); transform:translateY(-2px); }
+  .btn-lime{ background:var(--lime); color:var(--dark); }
+  .btn-lime:hover{ background:var(--lime-2); transform:translateY(-2px); }
+  .btn-outline-white{ background:var(--white); color:var(--dark); }
+  .btn-outline-white:hover{ background:var(--lime); }
+
+  /* ===== Top bar ===== */
+  .topbar{
+    background:var(--dark);
+    color:#dce9e0;
+    font-size:14px;
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 24px;
+  }
+  .topbar-left{ display:flex; gap:28px; align-items:center; flex-wrap:wrap; }
+  .topbar-left span{ display:flex; align-items:center; gap:8px; }
+  .topbar-social{
+    background:var(--lime); display:flex; gap:14px;
+    padding:12px 24px; color:var(--dark);
+  }
+  .topbar-social a{
+    width:26px; height:26px; border-radius:50%; background:var(--dark);
+    color:var(--lime); display:flex; align-items:center; justify-content:center;
+    font-size:12px; transition:.2s;
+  }
+  .topbar-social a:hover{ background:var(--dark-2); }
+
+  /* ===== Header ===== */
+  header.main{
+    background:var(--white);
+    padding:18px 0;
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 1px 0 rgba(0,0,0,.04);
+  }
+  .nav-wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:19px; }
+  .logo-badge{
+    width:32px; height:32px; border-radius:50%; background:var(--lime);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--dark); font-weight:800;
+  }
+  nav.links{ display:flex; gap:34px; font-weight:500; font-size:15px; }
+  nav.links a{ position:relative; color:var(--text); }
+  nav.links a.active{ font-weight:600; }
+  nav.links a.active::after{
+    content:""; position:absolute; left:0; bottom:-6px; width:100%; height:2px; background:var(--dark);
+  }
+  .menu-toggle{ display:none; background:none; border:none; font-size:24px; cursor:pointer; }
+
+  /* ===== Hero ===== */
+  .hero{
+    background:linear-gradient(180deg,#eef0ea,#f4f5ef);
+    padding:70px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
+  }
+  .hero h1{ font-size:48px; margin-bottom:20px; color:var(--dark); }
+  .hero p{ color:var(--muted); max-width:440px; margin-bottom:34px; font-size:16px; }
+  .hero-ctas{ display:flex; align-items:center; gap:28px; }
+  .hero-ctas .link-underline{ font-weight:600; text-decoration:underline; }
+
+  .hero-collage{ position:relative; height:420px; }
+  .collage-img{
+    position:absolute; border-radius:16px; overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+  }
+  .collage-img img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05); }
+  .ci-1{ width:44%; height:52%; left:0; top:8%; }
+  .ci-2{ width:44%; height:38%; right:0; top:0; }
+  .ci-3{ width:44%; height:34%; left:20%; bottom:0; }
+  .ci-4{ width:40%; height:44%; right:0; bottom:8%; }
+  .hero-badge{
+    position:absolute; left:2%; top:56%;
+    width:96px; height:96px; border-radius:50%;
+    background:var(--dark); color:var(--lime);
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; font-weight:700; text-align:center; letter-spacing:1px;
+    border:2px dashed var(--lime);
+    animation:spin 14s linear infinite;
+  }
+  .hero-badge span{
+    position:absolute; width:38px; height:38px; border-radius:50%;
+    background:var(--lime); color:var(--dark); display:flex; align-items:center; justify-content:center;
+    animation:none;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .sparkle{ position:absolute; color:var(--lime); font-size:26px; }
+  .sp1{ right:6%; bottom:2%; }
+  .sp2{ right:14%; bottom:12%; font-size:18px; }
+
+  /* ===== Marquee ===== */
+  .marquee-strip{
+    background:var(--dark); color:var(--white);
+    overflow:hidden; white-space:nowrap; padding:22px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  .marquee-track{ display:inline-flex; animation:scroll 26s linear infinite; }
+  .marquee-track span{
+    display:inline-flex; align-items:center; gap:16px;
+    font-family:'Poppins',sans-serif; font-weight:600; font-size:22px;
+    padding:0 32px; color:var(--white);
+  }
+  .marquee-track span::before{ content:"✦"; color:var(--lime); font-size:18px; }
+  @keyframes scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ===== About ===== */
+  .about{ padding:100px 0 70px; }
+  .about-head{ text-align:center; max-width:700px; margin:0 auto 50px; }
+  .about-head .eyebrow{ justify-content:center; }
+  .about-head h2{ font-size:36px; color:var(--dark); }
+
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start; }
+  .about-imgs{ position:relative; }
+  .about-imgs img{ border-radius:16px; filter:grayscale(1) contrast(1.05); width:100%; height:210px; object-fit:cover; margin-bottom:20px; }
+  .about-seal{
+    position:absolute; left:44%; top:32%;
+    width:78px; height:78px; border-radius:50%; background:var(--dark);
+    border:2px dashed var(--lime); display:flex; align-items:center; justify-content:center;
+  }
+  .about-seal i{
+    width:34px; height:34px; border-radius:50%; background:var(--lime);
+    display:flex; align-items:center; justify-content:center; color:var(--dark); font-style:normal;
+  }
+
+  .about-copy p{ color:var(--muted); margin-bottom:30px; }
+  .skill-row{ margin-bottom:22px; }
+  .skill-row .skill-label{ display:flex; justify-content:space-between; font-weight:600; margin-bottom:10px; font-size:15px; }
+  .bar{ height:6px; background:#e4e6dd; border-radius:6px; position:relative; }
+  .bar-fill{ height:100%; background:var(--dark); border-radius:6px; position:relative; }
+  .bar-fill::after{
+    content:""; position:absolute; right:-4px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; border-radius:50%; background:var(--lime); border:3px solid var(--dark);
+  }
+  .about-copy .btn{ margin-top:6px; }
+
+  .stats{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:70px; flex-wrap:wrap; gap:24px; text-align:center;
+  }
+  .stats .stat h3{ font-size:34px; color:var(--dark); }
+  .stats .stat p{ color:var(--muted); font-size:14px; }
+  .stat-divider{ display:flex; align-items:center; gap:4px; }
+  .stat-divider .dot{ width:16px; height:9px; border-radius:8px; background:var(--lime); }
+
+  /* ===== Services ===== */
+  .services{
+    background:var(--dark); color:var(--white);
+    padding:90px 0 100px;
+    position:relative;
+  }
+  .services::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:8px;
+    background:repeating-linear-gradient(45deg, var(--lime) 0 10px, transparent 10px 20px);
+    opacity:.6;
+  }
+  .services-head{
+    display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:50px; gap:20px; flex-wrap:wrap;
+  }
+  .services-head .eyebrow{ color:var(--lime); }
+  .services-head h2{ font-size:34px; color:var(--white); }
+
+  .service-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .service-card{
+    border-radius:16px; overflow:hidden; position:relative; min-height:280px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .service-card img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(1) brightness(.8);
+  }
+  .service-card .overlay{
+    position:relative; z-index:2; background:linear-gradient(0deg, rgba(0,0,0,.75), transparent 60%);
+    padding:20px; margin-top:auto;
+  }
+  .service-card h4{ color:var(--white); font-size:18px; }
+  .service-card.highlight{
+    background:var(--lime); color:var(--dark);
+    padding:26px; justify-content:flex-start;
+  }
+  .service-card.highlight h4{ color:var(--dark); margin-bottom:10px; font-size:19px; }
+  .service-card.highlight p{ font-size:14px; color:#274522; margin-bottom:18px; }
+  .service-card.highlight .learn{ font-weight:700; display:inline-flex; align-items:center; gap:6px; }
+
+  /* ===== Courses ===== */
+  .courses{ padding:90px 0 60px; background:var(--bg); }
+  .course-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+  }
+  .course-card{
+    background:var(--white); border-radius:16px; padding:36px 28px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transition:.25s ease; border:1px solid transparent;
+  }
+  .course-card:hover{ transform:translateY(-6px); border-color:var(--lime); }
+  .course-icon{
+    width:56px; height:56px; border-radius:50%; background:var(--lime);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    font-size:24px;
+  }
+  .course-card h4{ font-size:20px; margin-bottom:12px; color:var(--dark); }
+  .course-card p{ color:var(--muted); font-size:14px; margin-bottom:24px; }
+
+  /* ===== Contact ===== */
+  .contact{ padding:90px 0 100px; background:var(--bg); }
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-bottom:40px;
+  }
+  .contact-card{
+    background:var(--white); border-radius:16px; padding:32px 26px; text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+  }
+  .contact-icon{
+    width:52px; height:52px; border-radius:50%; background:var(--lime);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 16px;
+    font-size:20px;
+  }
+  .contact-card h4{ margin-bottom:8px; font-size:17px; }
+  .contact-card p{ color:var(--muted); font-size:14px; }
+  .contact-map{ border-radius:16px; overflow:hidden; }
+
+  /* ===== Footer (simple, matches theme) ===== */
+  footer{
+    background:var(--dark-2); color:#b9c6bd; padding:36px 0; text-align:center; font-size:14px;
+  }
+  footer strong{ color:var(--lime); }
+
+  /* ===== Responsive ===== */
+  @media (max-width:960px){
+    nav.links{ display:none; }
+    .menu-toggle{ display:block; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-collage{ height:320px; }
+    .about-grid{ grid-template-columns:1fr; }
+    .service-grid{ grid-template-columns:1fr; }
+    .course-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .stats{ justify-content:center; }
+    .stat-divider{ display:none; }
+  }
+  @media (max-width:600px){
+    .hero h1{ font-size:34px; }
+    .topbar-left{ display:none; }
+    .topbar-inner{ justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner container" style="padding-left:0;padding-right:0;">
+    <div class="topbar-left">
+      <span>📞 <!-- PHONE -->074-4043334</span>
+      <span>✉️ <!-- EMAIL --> Classic.Academy@yahoo.com</span>
+      <span>📍 <!-- ADDRESS --> 1st floor Nizamani labour hall near sagar book store GPO road larkana</span>
+    </div>
+  </div>
+</div>
+<div class="topbar-social">
+  <div class="container" style="display:flex; gap:14px; padding-left:0; padding-right:0;">
+    <a href="#" aria-label="Facebook">f</a>
+    <a href="#" aria-label="Twitter">x</a>
+    <a href="#" aria-label="Pinterest">p</a>
+    <a href="#" aria-label="Instagram">ig</a>
+    <a href="#" aria-label="YouTube">yt</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="main">
+  <div class="container nav-wrap">
+    <div class="logo">
+      <div class="logo-badge">
+        <!-- Placeholder academy logo (inline SVG). Replace this whole <svg> with -->
+          <div class="imgone"> 
+          <img src="classicLogo.png" alt=""> 
+          </div>
+             <!-- once you have your real logo file. -->
+        <!-- <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2z" fill="#163a26"/>
+          <path d="M5 10.18v3.64c0 .35.16.68.44.88C6.9 15.7 9.3 17 12 17s5.1-1.3 6.56-2.3c.28-.2.44-.53.44-.88v-3.64L12 14 5 10.18z" fill="#163a26"/>
+        </svg> -->
+      </div>
+      Classic Academy of Computer Science Larkana<span style="color:var(--lime)">.</span>
+    </div>
+    <nav class="links">
+      <a href="index.html" class="active">Home</a>
+      <a href="#services">VU Programs</a>
+      <a href="courses.html">All Courses</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="form.html" class="btn btn-lime">Enroll Now</a>
+    <button class="menu-toggle">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot"></span> Welcome to Our Academy</div>
+      <h1>Empowering Your Success with Quality Education</h1>
+      <p>We help students build real skills through expert-led courses, hands-on learning, and a supportive campus community.</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn btn-primary">Explore Programs →</a>
+        <a href="#services" class="link-underline">View All Courses</a>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <!-- Replace picsum URLs below with your own academy photos -->
+      <div class="collage-img ci-1"><img src="ten.jpeg" alt="Academic Building"></div>
+      <div class="collage-img ci-2"><img src="classicFive.png" alt="Students smiling"></div>
+      <div class="collage-img ci-3"><img src="group1.jpeg" alt="Group study session"></div>
+      <div class="collage-img ci-4"><img src="lab.jpeg" alt="Academic Persons"></div>
+      <div class="hero-badge">ENROLL<span>➜</span></div>
+      <div class="sparkle sp1">✦</div>
+      <div class="sparkle sp2">✦</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Academic Excellence</span>
+    <span>Expert Faculty</span>
+    <span>Career Support</span>
+    <span>Courses Offered</span>
+    <span>Academic Excellence</span>
+    <span>Expert Faculty</span>
+    <span>Career Support</span>
+    <span>Courses Offered</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-head">
+      <div class="eyebrow"><span class="dot"></span> About Us</div>
+      <h2>Empowering Your Success with Quality Education</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-imgs">
+        <!-- Replace picsum URLs below with your own academy photos -->
+        <img src="classicNine.png" alt="Students in a lecture hall">
+        <img src="VUFour.png" alt="Teacher helping a student">
+        <div class="about-seal"><i>➜</i></div>
+      </div>
+
+      <div class="about-copy">
+        <p> Classic Academy Larkana is a well-established vocational, IT, and coaching institute in Larkana, Pakistan, founded in 1991. It serves as a recognized campus for the Virtual University of Pakistan and offers a wide variety of services including degree programs, short IT courses, and academic coaching.  Our academy is built on a simple belief: every student deserves access to great teaching, real-world skills, and a community that supports their growth. From day one, our faculty and staff work closely with each student to help them reach their goals.</p>
+
+        <div class="skill-row">
+          <div class="skill-label"><span>Academic Achievement</span><span>90%</span></div>
+          <div class="bar"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>Student Satisfaction</span><span>88%</span></div>
+          <div class="bar"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-label"><span>Career Placement</span><span>95%</span></div>
+          <div class="bar"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+
+        <a href="#" class="btn btn-primary">About Us →</a>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><h3>5k+</h3><p>Graduated Students</p></div>
+      <div class="stat-divider"><span class="dot"></span></div>
+      <div class="stat"><h3>150+</h3><p>Expert Faculty</p></div>
+      <div class="stat-divider"><span class="dot"></span></div>
+      <div class="stat"><h3>40+</h3><p>Courses Offered</p></div>
+      <div class="stat-divider"><span class="dot"></span></div>
+      <div class="stat"><h3>20+</h3><p>Years of Excellence</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Our Programs</div>
+        <h2>Build Your Future<br>with Our Programs</h2>
+      </div>
+      <a href="#" class="btn btn-outline-white">View All Programs →</a>
+    </div>
+
+    <div class="service-grid">
+      <!-- Replace picsum URLs below with your own academy photos -->
+      <div class="service-card">
+        <img src="vulogo.jpeg" alt="Science and technology program">
+        <div class="overlay"><h4>Education Programs</h4></div>
+      </div>
+
+      <div class="service-card highlight">
+        <h4>BS Programs</h4>
+        <p>Practical, project-based courses that build real business skills, from finance to management to communication.</p>
+        <a href="#" class="learn">Learn more →</a>
+      </div>
+
+      <div class="service-card">
+        <img src="vuBuilding.jpeg" alt="Arts and design program">
+        <div class="overlay"><h4>Associate Degree Programs</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="container">
+    <div class="about-head" style="max-width:900px; display:flex; align-items:flex-end; justify-content:space-between; text-align:left; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Our Courses</div>
+        <h2>Choose the Course That Fits You</h2>
+      </div>
+      <a href="courses.html" class="btn btn-primary">View All Courses →</a>
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card">
+        <div class="course-icon">👤</div>
+        <h4>Private Course</h4>
+        <p>One-on-one classes tailored to each student's pace, schedule, and goals — with personal attention from a dedicated instructor.</p>
+        <a href="courses.html#private" class="btn btn-primary">View Courses →</a>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">🎓</div>
+        <h4>Youth Course</h4>
+        <p>Age-appropriate, interactive learning designed to build strong foundational skills for younger students in a fun, engaging way.</p>
+        <a href="courses.html" class="btn btn-primary">View Courses →</a>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">🛠️</div>
+        <h4>NAVTTC Course</h4>
+        <p>Government-certified technical and vocational training aligned with NAVTTC standards, preparing students for recognized certification.</p>
+        <a href="courses.html" class="btn btn-primary">View Courses →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="about-head">
+      <div class="eyebrow"><span class="dot"></span> Get In Touch</div>
+      <h2>Contact Our Academy</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h4>Visit Us</h4>
+        <p><!-- ADDRESS -->1st floor Nizamani labour hall near sagar book store GPO road larkana</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h4>Call Us</h4>
+        <p><!-- PHONE -->074-4043334</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <h4>Email Us</h4>
+        <p><!-- EMAIL -->Classic.Academy@yahoo.com</p>
+      </div>
+    </div>
+
+    <!-- Replace the src below with your Google Maps embed link for the academy location -->
+    <div class="contact-map">
+      <iframe
+        src="map.png"
+        width="100%" height="320" style="border:0; border-radius:16px;"
+        allowfullscreen="" loading="lazy" title="Academy location map">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 <strong>Classic Academy</strong>. All rights reserved. — Built for academy project.
+    <br>
+     <div class="credits">
+      <p><strong>Developed By:</strong> Muskan Korai, Farhana Lashari, Mehak Korai</p>
+      <p><strong>Supervising Teacher:</strong> Sir Wajid Korkani</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const toggle = document.querySelector('.menu-toggle');
+  const links = document.querySelector('nav.links');
+  toggle.addEventListener('click', () => {
+    const visible = links.style.display === 'flex';
+    links.style.display = visible ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '70px';
+    links.style.right = '20px';
+    links.style.background = '#fff';
+    links.style.padding = '20px';
+    links.style.borderRadius = '12px';
+    links.style.boxShadow = '0 10px 30px rgba(0,0,0,.12)';
+    links.style.gap = '16px';
+    links.style.zIndex = '200';
+  });
+</script>
+
+</body>
+</html>
